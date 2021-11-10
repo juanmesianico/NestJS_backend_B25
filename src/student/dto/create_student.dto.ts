@@ -1,6 +1,4 @@
-import { Document } from "mongoose";
-
-export interface IStudent extends Document{
+export class CreateStudentDTO{
     
     readonly code: number;
     readonly name: string;

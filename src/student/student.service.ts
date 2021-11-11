@@ -10,21 +10,28 @@ export class StudentService {
     constructor(@InjectModel('Student') private readonly studentModel: Model<IStudent>){}
 
     async getStudents(): Promise<IStudent[]> {
-        const students = await this.studentModel.find();
+        const students = await this.studentModel.find().sort({name: -1});
         return students;
     }
 
-    async createStudent(createStudentDTO: CreateStudentDTO): Promise<IStudent>{
+    async getStudentById(studentId: string): Promise<IStudent> {
+        const student = await this.studentModel.findById(studentId);
+        return student;
+    }
+
+    async createStudent(createStudentDTO: CreateStudentDTO): Promise<IStudent> {
         const student = new this.studentModel(createStudentDTO);
         await student.save();
         return student;
     }
 
-    updateStudent(){
-
+    async updateStudent(studentId: string, createStudentDTO: CreateStudentDTO): Promise<IStudent> {
+        const updatedStudent = await this.studentModel.findByIdAndUpdate(studentId, createStudentDTO, { new: true });
+        return updatedStudent;
     }
 
-    deleteStudent(){
-
+    async deleteStudentById(studentId: string): Promise<IStudent> {
+        const deletedStudent = await this.studentModel.findByIdAndDelete(studentId);
+        return deletedStudent;
     }
 }

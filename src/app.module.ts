@@ -5,6 +5,8 @@ import { StudentModule } from './student/student.module';
 import { ProductModule } from './product/product.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   controllers: [AppController],
@@ -19,10 +21,12 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASS,
       database: process.env.DATABASE_NAME,
-      autoLoadEntities: true,  //para cargar todas las entidades que se trabajan de manera automatica
+      autoLoadEntities: true,
       synchronize: true,
     }),
-    ProductModule
+    ProductModule,
+    UserModule,
+    AuthModule
   ],
 })
 export class AppModule {}

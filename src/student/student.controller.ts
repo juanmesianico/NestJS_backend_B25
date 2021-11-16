@@ -33,6 +33,11 @@ export class StudentController {
     async createStudent(@Res() res, @Body() createStudentDTO: CreateStudentDTO ){
 
         const student = await this.studentService.createStudent(createStudentDTO)
+
+        if(student.code){
+            throw new Error('Student already exists');
+        }
+
         return res.status(HttpStatus.CREATED).json({
             message: 'received',
             data: student
@@ -53,7 +58,7 @@ export class StudentController {
         });
     }
 
-    @Delete('/delete/')
+    @Delete('/delete')
     async deleteStudent(@Res() res, @Query('studentId') id){
         const student = await this.studentService.deleteStudentById(id);
         

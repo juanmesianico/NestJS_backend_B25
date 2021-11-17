@@ -42,13 +42,13 @@ export class AuthService {
         const expireIn = process.env.EXPIRES_IN;
         const accessToken = this.jwtService.sign(user);
 
-        let toke: ILoginStatus = {
+        let token: ILoginStatus = {
             username: user.username,
             expireIn,
             accessToken
-        }
+        };
 
-        return toke;
+        return token;
     }
 
     async validateUser(payload: IJwtPayload): Promise<UserDTO>{

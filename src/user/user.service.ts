@@ -1,6 +1,6 @@
-import { HttpException, HttpStatus, HttpVersionNotSupportedException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CannotAttachTreeChildrenEntityError, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { LoginUserDTO } from './dto/login_user.dto';
 import { UserDTO } from './dto/user.dto';
 import { UserEntity } from './models/user.entity';
@@ -24,7 +24,7 @@ export class UserService {
         
         const user = await this.userRepository.findOne({where: {username}});
         
-        if(user!){
+        if(!user){
             throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
         }
         

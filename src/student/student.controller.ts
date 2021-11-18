@@ -34,11 +34,7 @@ export class StudentController {
     @Post('/create')
     async createStudent(@Res() res, @Body() createStudentDTO: CreateStudentDTO ){
 
-        const student = await this.studentService.createStudent(createStudentDTO)
-
-        if(student.code){
-            throw new Error('Student already exists');
-        }
+        const student = await this.studentService.createStudent(createStudentDTO);
 
         return res.status(HttpStatus.CREATED).json({
             message: 'received',

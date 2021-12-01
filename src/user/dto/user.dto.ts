@@ -9,4 +9,5 @@ export class UserDTO{
     readonly updatedAt: Date; 
     readonly active: boolean;
     readonly role: Role;
+    readonly products?: number[];
 }

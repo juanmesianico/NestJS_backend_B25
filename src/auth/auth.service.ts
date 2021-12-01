@@ -43,7 +43,10 @@ export class AuthService {
         const accessToken = this.jwtService.sign(user);
 
         let token: ILoginStatus = {
+            
+            id: user.id,
             username: user.username,
+            role: user.role,
             expireIn,
             accessToken
         };

@@ -13,6 +13,13 @@ export class UserService {
 
     constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>){}
 
+    async findById(id: string): Promise<UserEntity>{
+
+        const userEntity = await this.userRepository.findOne(id);
+        return userEntity;
+
+    }
+    
     async getUser(options?: object): Promise<UserDTO>{
 
         const userEntity = await this.userRepository.findOne(options);

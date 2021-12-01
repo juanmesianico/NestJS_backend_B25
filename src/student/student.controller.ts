@@ -3,18 +3,16 @@ import { StudentService } from './student.service';
 import { CreateStudentDTO } from './dto/create_student.dto';
 import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard())
 @Controller('student')
 export class StudentController {
 
     constructor(private readonly studentService: StudentService){}
     
     @Get()
-    @UseGuards(AuthGuard())
     async getStudents(@Res() res){
         const students = await this.studentService.getStudents();    
-        return res.status(HttpStatus.OK).json({
-            data: students
-        });
+        return res.status(HttpStatus.OK).send(students);
     }
 
     @Get('/:studentId')
@@ -25,10 +23,7 @@ export class StudentController {
             throw new NotFoundException('Student does not exists');
         }
 
-        return res.status(HttpStatus.OK).json({
-            message: 'Found',
-            data: student
-        });
+        return res.status(HttpStatus.OK).send(student);
     }
 
     @Post('/create')
@@ -36,10 +31,7 @@ export class StudentController {
 
         const student = await this.studentService.createStudent(createStudentDTO);
 
-        return res.status(HttpStatus.CREATED).json({
-            message: 'received',
-            data: student
-        });
+        return res.status(HttpStatus.CREATED).send(student);
     }
 
     @Put('/update/:studentId')
@@ -50,10 +42,7 @@ export class StudentController {
             throw new NotFoundException('Student does not exists');
         }
 
-        return res.status(HttpStatus.OK).json({
-            message: 'Student updated',
-            data: student
-        });
+        return res.status(HttpStatus.OK).send(student);
     }
 
     @Delete('/delete')
@@ -64,9 +53,6 @@ export class StudentController {
             throw new NotFoundException('Student does not exists');
         }
 
-        return res.status(HttpStatus.OK).json({
-            message: 'Deleted',
-            data: student
-        });
+        return res.status(HttpStatus.OK).send(student);
     }
 }

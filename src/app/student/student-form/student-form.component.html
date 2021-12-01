@@ -1,0 +1,53 @@
+<div class="row">
+
+    <div class="col-sm-4 offset-md-4">
+        <div class="card card-body">
+            <form class="form-horizontal" (ngSubmit)="edit?updateStudent():createStudent()">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>Form Name</legend>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-12 control-label" for="textinput">Code</label>
+                        <div class="col-md-12">
+                            <input id="code" name="code" type="text" placeholder="Student code"
+                            class="form-control input-md" [(ngModel)]="student.code" autofocus>
+                        </div>
+                    </div>
+                    <br>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-12 control-label" for="textinput">Name</label>
+                        <div class="col-md-12">
+                            <input id="name" name="name" type="text" placeholder="Student name"
+                                class="form-control input-md" [(ngModel)]="student.name">
+                        </div>
+                    </div>
+                    <br>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-12 control-label" for="textinput">Photo</label>
+                        <div class="col-md-12">
+                            <input id="photo" name="photo" type="text" placeholder="Student photo"
+                                class="form-control input-md" [(ngModel)]="student.photoURL">
+                        </div>
+                    </div>
+                    <br>
+
+                    <!-- Button (Double) -->
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <button id="button1id" name="button1id" class="btn btn-success">Save</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
